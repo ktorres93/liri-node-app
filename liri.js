@@ -1,3 +1,2 @@
-/**
- * Created by kevin on 6/17/2017.
- */
+var Twitter = require('twitter');
+var Spotify = require('node-spotify-api');
