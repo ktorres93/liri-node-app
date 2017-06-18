@@ -8,30 +8,45 @@ var nodeArgs = process.argv;
 var request = require("request");
 
 
+
 //calls last 20 tweets
 // function lastTweets() {
 //
 // }
 
 //does whatever the random.txt file says
-// function runRandomTxt() {
-//
-// }
-//grabs Artist(s), The song's name , A preview link of the song from Spotify, The album that the song is from
-function getSong() {
-    var userinput= "";
-    for (var i = 3; i < nodeArgs.length; i++) {
-        userinput = userinput + " " + nodeArgs[i];
-    }
-    Spotify.search({ type: 'track', query: 'All the Small Things' }, function(err, data) {
-        if (err) {
-            return console.log('Error occurred: ' + err);
+function runRandomTxt() {
+    var fs = require("fs");
+    fs.readFile("random.txt", "utf8", function (error, data) {
+        if (error) {
+            return console.log(error);
         }
-
         console.log(data);
-    });
+        //sets user input to empty string
+        var userinput= "";
+        // starting from index 3 of node args loops through args and adds them to the userinput variable
+        for (var i = 3; i < nodeArgs.length; i++) {
+            userinput = userinput + "" + nodeArgs[i];
+        }
+            userinput.push(data);
 
+    });
 }
+//grabs Artist(s), The song's name , A preview link of the song from Spotify, The album that the song is from
+// function getSong() {
+//     var userinput= "";
+//     for (var i = 3; i < nodeArgs.length; i++) {
+//         userinput = userinput + " " + nodeArgs[i];
+//     }
+//     spotifyKeys.search({ type: 'track', query: 'All the Small Things' }, function(err, data) {
+//         if (err) {
+//             return console.log('Error occurred: ' + err);
+//         }
+//
+//         console.log(data);
+//     });
+
+// }
 //gets data on movies from node prompt
 function getMovie() {
     //sets user input to empty string
@@ -66,22 +81,10 @@ for (var i = 2; i < nodeArgs.length; i++) {
     // else if (nodeArgs[2] = "my-tweets") {
     //     lastTweets
     // }
-    // else if (nodeArgs[2] = "do-what-it-says") {
-    //    runRandomTxt();
-    // }
+    else if (nodeArgs[2] = "do-what-it-says") {
+       runRandomTxt();
+    }
      else {
     console.log("Please type: movie-this, spotify-this-song, my-tweets, or do-what-it-says");
     }
 }
-
-
-
-
-    //gotta make it so node terminal can take in these commands
-//my-tweets
-
-//spotify-this-song
-
-//movie-this
-
-//do-what-it-says
