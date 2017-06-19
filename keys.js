@@ -7,8 +7,8 @@ exports.twitterKeys = {
   access_token_secret: 'fPoxSDnmbCdCoovZJZNrA3vxfr5XUgNE1pemiCaOlcRaT'
 };
 exports.spotifyKeys= {
-  client_id: '953f85c12f7a4a37b062e3dbd977d5bb',
-  client_secret: '06662c7d5d4c47da822afb649df8390a'
+  id: '953f85c12f7a4a37b062e3dbd977d5bb',
+  secret: '06662c7d5d4c47da822afb649df8390a'
 };
 exports.omdbkeys= {
   apikey: '40e9cece'

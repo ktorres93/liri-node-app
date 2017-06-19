@@ -8,7 +8,6 @@ var nodeArgs = process.argv;
 var request = require("request");
 
 
-
 //calls last 20 tweets
 // function lastTweets() {
 //
@@ -36,10 +35,7 @@ function getSong() {
     }
 
     var spotify = new Spotify(
-        spotifyKeys= {
-            client_id: '953f85c12f7a4a37b062e3dbd977d5bb',
-            client_secret: '06662c7d5d4c47da822afb649df8390a'
-        }
+        spotifyKeys.spotifyKeys
 
 );
 
@@ -48,7 +44,7 @@ function getSong() {
             return console.log('Error occurred: ' + err);
         }
 
-        console.log(data);
+        console.log((data));
     });
 }
 
