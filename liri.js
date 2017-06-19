@@ -3,7 +3,7 @@ var Spotify = require('node-spotify-api');
 var twitterKeys = require('./keys.js');
 // console.log(twitterKeys);
 var spotifyKeys = require('./keys.js');
-// console.log(spotifyKeys);
+ //console.log(spotifyKeys);
 var nodeArgs = process.argv;
 var request = require("request");
 
@@ -22,31 +22,36 @@ function runRandomTxt() {
             return console.log(error);
         }
         console.log(data);
-        //sets user input to empty string
-        var userinput= "";
-        // starting from index 3 of node args loops through args and adds them to the userinput variable
-        for (var i = 3; i < nodeArgs.length; i++) {
-            userinput = userinput + "" + nodeArgs[i];
-        }
-            userinput.push(data);
+
+        nodeArgs.push(data);
+        console.log(nodeArgs);
 
     });
 }
 //grabs Artist(s), The song's name , A preview link of the song from Spotify, The album that the song is from
-// function getSong() {
-//     var userinput= "";
-//     for (var i = 3; i < nodeArgs.length; i++) {
-//         userinput = userinput + " " + nodeArgs[i];
-//     }
-//     spotifyKeys.search({ type: 'track', query: 'All the Small Things' }, function(err, data) {
-//         if (err) {
-//             return console.log('Error occurred: ' + err);
-//         }
-//
-//         console.log(data);
-//     });
+function getSong() {
+    var userinput= "";
+    for (var i = 3; i < nodeArgs.length; i++) {
+        userinput = userinput + " " + nodeArgs[i];
+    }
 
-// }
+    var spotify = new Spotify(
+        spotifyKeys= {
+            client_id: '953f85c12f7a4a37b062e3dbd977d5bb',
+            client_secret: '06662c7d5d4c47da822afb649df8390a'
+        }
+
+);
+
+    spotify.search({ type: 'track', query: userinput }, function(err, data) {
+        if (err) {
+            return console.log('Error occurred: ' + err);
+        }
+
+        console.log(data);
+    });
+}
+
 //gets data on movies from node prompt
 function getMovie() {
     //sets user input to empty string
@@ -75,9 +80,9 @@ for (var i = 2; i < nodeArgs.length; i++) {
     if (nodeArgs[2] === "movie-this") {
         getMovie();
     }
-    // else if (nodeArgs[2] = "spotify-this-song") {
-    //     getSong();
-    // }
+    else if (nodeArgs[2||3] = "spotify-this-song") {
+        getSong();
+    }
     // else if (nodeArgs[2] = "my-tweets") {
     //     lastTweets
     // }
