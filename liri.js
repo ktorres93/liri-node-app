@@ -9,9 +9,17 @@ var request = require("request");
 
 
 //calls last 20 tweets
-// function lastTweets() {
-//
-// }
+function lastTweets() {
+    var client = new Twitter(
+     twitterKeys.twitterKeys
+    );
+    var params = {screen_name: 'AnonDisco'};
+    client.get('statuses/user_timeline', params, function(error, tweets, response) {
+        if (!error) {
+            console.log(tweets);
+        }
+    });
+}
 
 //does whatever the random.txt file says
 function runRandomTxt() {
@@ -74,13 +82,13 @@ for (var i = 2; i < nodeArgs.length; i++) {
     if (nodeArgs[2||3] === "movie-this") {
         getMovie();
     }
-    else if (nodeArgs[2||3] = "spotify-this-song") {
+    else if (nodeArgs[2||3] === "spotify-this-song") {
         getSong();
     }
-    // else if (nodeArgs[2] = "my-tweets") {
-    //     lastTweets
-    // }
-    else if (nodeArgs[2] = "do-what-it-says") {
+    else if (nodeArgs[2] === "my-tweets") {
+        lastTweets();
+    }
+    else if (nodeArgs[2] === "do-what-it-says") {
        runRandomTxt();
     }
      else {
