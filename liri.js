@@ -22,8 +22,6 @@ function runRandomTxt() {
         }
         console.log(data);
 
-        nodeArgs.push(data);
-        console.log(nodeArgs);
 
     });
 }
@@ -39,12 +37,12 @@ function getSong() {
 
 );
 
-    spotify.search({ type: 'track', query: userinput }, function(err, data) {
+    spotify.search({ type: 'track', query: userinput,limit: 1 }, function(err, data) {
         if (err) {
             return console.log('Error occurred: ' + err);
         }
 
-        console.log((data));
+        console.log(data.tracks);
     });
 }
 
@@ -73,7 +71,7 @@ request("http://www.omdbapi.com/?t=" + userinput + "=&plot=short&apikey=40e9cece
 // this for loop makes it so we can launch the functions based on  index 2 of the node
 // command line. and if none of the values match a function it prompts the user to enter a correct value.
 for (var i = 2; i < nodeArgs.length; i++) {
-    if (nodeArgs[2] === "movie-this") {
+    if (nodeArgs[2||3] === "movie-this") {
         getMovie();
     }
     else if (nodeArgs[2||3] = "spotify-this-song") {
